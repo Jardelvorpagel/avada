@@ -1,0 +1,31 @@
+<meta charset="UTF-8">
+
+<script>
+    function pulaLinha() {
+        document.write("<br><br>");
+    }
+
+    function mostra(frase) {
+        document.write(frase);
+        pulaLinha();
+    }
+
+    mostra("Em for");
+        for(var y = 0; y <= 10; y++) //Primeiro declara a várialvel ; Depois a condição ; Por último o incremeto.
+            {
+                mostra("2 x " + y + " = " + (2 * y));
+
+            }
+
+
+    mostra("Em while");
+        var i = 0;
+
+            while(i <= 10){
+                mostra("2 x " + i + " = " + (2 * i));
+                i++
+            }
+
+    mostra("FIM!");
+
+</script>
