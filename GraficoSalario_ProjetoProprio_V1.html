@@ -1,0 +1,98 @@
+<meta charset="utf-8">
+<style type="text/css">
+	.chart-container {
+  position: relative;
+ 
+  height: 100vh;
+  width: 30vw;
+}
+</style>
+<div align=" center"><h1>Quanto ira te sobrar de salário?</h1></div>
+<div align="center">
+			 <form id="formulario" >
+			<div id="teste">
+				Informe seu salário limpo (R$):<input type="text" id="salarioEnt" style="width:60px;font-size: 13px"> &nbsp;-&nbsp;
+				Informe valor total de contas no mês (R$):<input type="text" id="totalgasto" style="width:60px;font-size: 13px"> &nbsp;- &nbsp;
+				<input type="submit" value="Calcular">
+				</div><br>
+				 <div class="cont_sub1"><span id="span" name="resultado"></span>
+  </div>
+  <table><div class="chart-container"><canvas id="myChart" ></canvas></div></table>
+
+			
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>
+<script>
+
+
+
+	var form = document.getElementById('formulario');
+	var campo = document.getElementById('campo');
+
+	function entrada(e) {
+		
+
+		// alerta o valor do campo
+    	//alert(campo.value);
+				
+				//inicia bar
+					var salario = salarioEnt.value;
+					var totalg = totalgasto.value;
+
+					var sobra = salario - totalg;
+					document.getElementById("span").innerHTML = 'Irá te sobrar ' + sobra + ' reais.';
+
+					var ctx = document.getElementById("myChart").getContext('2d');
+					document.getElementById('teste').div = sobra;
+					var myChart = new Chart(ctx, {
+					    type: 'bar',
+					    data: {
+					        labels: ["Seu Salário", "Total de Contas", "Sobra"],
+					        datasets: [{
+					            label: '',
+					            data: [salario, totalg, sobra],
+					            backgroundColor: [
+					                'rgba(255, 99, 132, 0.2)',
+					                'rgba(54, 162, 235, 0.2)',
+					                'rgba(255, 206, 86, 0.2)',
+					                'rgba(75, 192, 192, 0.2)',
+					                'rgba(153, 102, 255, 0.2)',
+					                'rgba(255, 159, 64, 0.2)'
+					            ],
+					            borderColor: [
+					                'rgba(255,99,132,1)',
+					                'rgba(54, 162, 235, 1)',
+					                'rgba(255, 206, 86, 1)',
+					                'rgba(75, 192, 192, 1)',
+					                'rgba(153, 102, 255, 1)',
+					                'rgba(255, 159, 64, 1)'
+					            ],
+					            borderWidth: 1
+					        }]
+					    },
+					    options: {
+					        scales: {
+					            yAxes: [{
+					                ticks: {
+					                    beginAtZero:true
+					                }
+					            }]
+					        }
+					    }
+					});
+
+
+
+
+				//termina Bar
+
+    	
+    	// impede o envio do form
+    	e.preventDefault();
+	}
+
+	form.addEventListener('submit', entrada);
+
+	
+
+</script>
